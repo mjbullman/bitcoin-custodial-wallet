@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 
-import { useAuth } from '@/context/authContextState'
+import { useAuth } from '@/context/authContext'
 import { useRouter } from 'next/navigation'
 
 import {

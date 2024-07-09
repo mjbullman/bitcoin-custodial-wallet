@@ -3,7 +3,7 @@ import * as React from 'react'
 import Theme from '@/theme/theme'
 import NavBar from '@/app/components/layout/NavBar'
 import CssBaseline from '@mui/material/CssBaseline'
-import { AuthProvider } from '@/context/authContextState'
+import { AuthProvider } from '@/context/authContext'
 import { ThemeProvider } from '@mui/material/styles'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 

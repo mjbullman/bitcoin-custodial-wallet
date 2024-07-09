@@ -3,7 +3,7 @@
 import React from 'react'
 
 import Link from 'next/link'
-import { useAuth } from '@/context/authContextState'
+import { useAuth } from '@/context/authContext'
 
 import {
     AppBar, Avatar, Button, Toolbar, Typography
