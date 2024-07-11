@@ -9,12 +9,12 @@ const { check, validationResult } = require('express-validator')
 exports.validateLoginForm = [
     check('email')
         .trim()
-        .normalizeEmail()
         .not()
         .isEmpty()
         .withMessage('Email address required!')
         .bail()
         .isEmail()
+        .normalizeEmail()
         .withMessage('Invalid email address!')
         .bail(),
     check('password')
