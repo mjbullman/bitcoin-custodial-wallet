@@ -12,7 +12,7 @@ const cookie = require('cookie')
  */
 const generateToken = (user) => {
     return jwt.sign({
-        id: user.id, email: user.email, name: user.name
+        id: user.id, email: user.email, name: user.name, address: user.address, btc_wallet_address: user.btc_wallet_address
     }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES
     })
