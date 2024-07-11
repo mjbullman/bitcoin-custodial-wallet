@@ -25,6 +25,7 @@
     "plaid": "^25.0.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-plaid-link": "^3.5.2",
     "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
