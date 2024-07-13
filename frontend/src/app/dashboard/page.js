@@ -1,43 +1,95 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
+import PurchaseBTC from '@/app/components/crypto/PurchaseBTC'
+import LoadingScreen from '@/app/components/sections/LoadingScreen'
+import PlaidLinkAccount from '@/app/components/plaid/PlaidLinkAccount'
 import useProtectedRoute from '@/hooks/useProtectedRoute'
 
 import {
-    Avatar, Box, Button, Container, Typography
+    Box, Divider, Container, Typography, Paper
 } from '@mui/material'
 
-import PlaidLinkAccount from '@/app/components/plaid/PlaidLinkAccount'
 
 const Dashboard = () => {
     const user = useProtectedRoute()
+    const [accounts, setAccounts] = useState({})
+    const [bitcoinBalance, setBitcoinBalance] = useState(0)
+
+    useEffect(() => {
+        getAccounts()
+        getBitcoinBalance()
+    }, [])
+
+    const getAccounts = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/plaid/get_accounts`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+
+        if (response.ok) {
+            const data = await response.json()
+            setAccounts(data)
+        }
+        else {
+            console.log('Error getting accounts.')
+        }
+    }
+
+    const getBitcoinBalance = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE}/api/bitcoin/balance`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        })
+
+        if (response.ok) {
+            const data = await response.json()
+            setBitcoinBalance(data)
+        }
+        else {
+            console.log('Error getting BTC balance.')
+        }
+    }
 
     if (!user) {
-        return (
-            <p>loading...</p>
-        )
+        return (<LoadingScreen/>)
     }
     else {
         return (
-            <Container maxWidth="xs">
-                <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    minHeight="80vh">
+            <Container>
+                <Box my={4}>
 
-                    <Avatar sx={{m: 1}}></Avatar>
+                    <Typography color={'primary'} align="center" variant="h4" gutterBottom>
+                        Crypto Wallet Dashboard
+                    </Typography>
 
-                    <Typography component="h1" variant="h4">Secure Dashboard</Typography>
+                    <Paper elevation={3} sx={{ padding: 3, marginBottom: 4 }}>
+                        <Box textAlign="center" my={2}>
+                            <Typography variant="h6" gutterBottom>
+                                Bitcoin Wallet Balance
+                            </Typography>
 
-                    <Typography component="h1" variant="h4">Balance</Typography>
+                            <Typography variant="h4" color="primary">
+                                { bitcoinBalance.toFixed(8) } BTC
+                            </Typography>
+                        </Box>
+                    </Paper>
 
-                    <Typography component="h1" variant="h4">€0</Typography>
+                    <Divider sx={{ my: 2 }} />
 
-                    <PlaidLinkAccount></PlaidLinkAccount>
-
+                    {!accounts.length && (
+                        <PlaidLinkAccount setAccounts={setAccounts} />
+                    )}
+                    {accounts.length > 0 && (
+                        <PurchaseBTC accounts={accounts} getBitcoinBalance={getBitcoinBalance} />
+                    )}
                 </Box>
             </Container>
         )
