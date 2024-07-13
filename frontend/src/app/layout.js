@@ -7,6 +7,8 @@ import { AuthProvider } from '@/context/authContext'
 import { ThemeProvider } from '@mui/material/styles'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter'
 
+import './globals.css'
+
 import {
     Box, Container
 } from '@mui/material'
