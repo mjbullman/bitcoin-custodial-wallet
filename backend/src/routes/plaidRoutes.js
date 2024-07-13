@@ -10,6 +10,7 @@ const authenticateToken = require('../middlewares/auth/authToken')
  * The `plaidController.createLinkToken` function processes the link token creation.
  *
  * @route GET /api/plaid/create_link_token
+ * @access Private (requires authentication token)
  */
 router.get('/create_link_token', authenticateToken, plaidController.createLinkToken)
 
@@ -20,6 +21,7 @@ router.get('/create_link_token', authenticateToken, plaidController.createLinkTo
  * The `plaidController.exchangePublicToken` function processes the token exchange.
  *
  * @route POST /api/plaid/exchange_public_token
+ * @access Private (requires authentication token)
  */
 router.post('/exchange_public_token', authenticateToken, plaidController.exchangePublicToken)
 
@@ -30,8 +32,20 @@ router.post('/exchange_public_token', authenticateToken, plaidController.exchang
  * The `plaidController.linkAccounts` function processes the account linking.
  *
  * @route POST /api/plaid/link_accounts
+ * @access Private (requires authentication token)
  */
 router.post('/link_accounts', authenticateToken, plaidController.linkAccounts)
+
+
+/**
+ * Get accounts route.
+ *
+ * Retrieves linked Plaid accounts for the authenticated user.
+ *
+ * @route GET /api/plaid/get_accounts
+ * @access Private (requires authentication token)
+ */
+router.get('/get_accounts', authenticateToken, plaidController.getAccounts)
 
 /**
  * Get balance route.
@@ -39,7 +53,7 @@ router.post('/link_accounts', authenticateToken, plaidController.linkAccounts)
  * This route handles retrieving account balances from Plaid.
  * The `plaidController.getBalance` function processes the balance retrieval.
  *
- * @route POST /api/plaid/get_balance
+ * @access Private (requires authentication token)
  */
 router.post('/get_balance', authenticateToken, plaidController.getBalance)
 
