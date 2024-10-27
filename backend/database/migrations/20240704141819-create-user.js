@@ -22,10 +22,10 @@ module.exports = {
     async up (queryInterface, Sequelize) {
         await queryInterface.createTable('Users', {
             id: {
+                type: Sequelize.INTEGER,
                 allowNull: false,
                 autoIncrement: true,
-                primaryKey: true,
-                type: Sequelize.INTEGER
+                primaryKey: true
             },
             name: {
                 type: Sequelize.STRING
@@ -36,19 +36,25 @@ module.exports = {
             password: {
                 type: Sequelize.STRING
             },
-            bitcoinAddress: {
-                type: Sequelize.STRING
-            },
             address: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            btc_wallet_address: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+            plaid_access_token: {
+                type: Sequelize.STRING,
+                allowNull: true
             },
             createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                allowNull: false
             },
             updatedAt: {
-                allowNull: false,
-                type: Sequelize.DATE
+                type: Sequelize.DATE,
+                allowNull: false
             }
         })
     },

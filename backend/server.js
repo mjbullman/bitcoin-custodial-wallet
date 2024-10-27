@@ -2,12 +2,26 @@ require('dotenv').config()
 const cors = require('cors')
 const express = require('express')
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 const PORT = process.env.PORT || 8080
 
-app.use(cors())
+app.use(cors({
+    origin: process.env.BASE_URL,
+    credentials: true
+}))
+
 app.use(bodyParser.json())
+app.use(cookieParser())
+
+// import routes.
+const authRoutes = require('./src/routes/authRoutes')
+const plaidRoutes = require('./src/routes/plaidRoutes')
+
+// use routes
+app.use('/api/auth', authRoutes)
+app.use('/api/plaid', plaidRoutes)
 
 // start server listening on port.
 app.listen(PORT, () =>{
