@@ -1,11 +1,14 @@
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
+
 const { generateToken } = require('../utils/jwtAuth')
+const { generateBitcoinAddress } = require('./bitcoinService')
 
 /**
  * Handles the user signup process.
  *
  * Creates a new user in the database and generates a JWT token for authentication.
+ * Also create a Bitcoin wallet address for the user.
  *
  * @param {Object} userDetails - An object containing user details (name, email, password).
  * @returns {Object} - An object containing the created user and the generated JWT token.
@@ -13,7 +16,8 @@ const { generateToken } = require('../utils/jwtAuth')
  */
 async function signup(userDetails) {
     const { name, email, password } = userDetails
-    const user = await User.create({ name, email, password })
+    const btc_wallet_address = await generateBitcoinAddress()
+    const user = await User.create({ name, email, password, btc_wallet_address })
     const token = generateToken(user)
 
     return { user, token }
@@ -50,7 +54,7 @@ async function login(loginDetails) {
  */
 function check(token) {
     if (!token) {
-        throw new Error('No token provided')
+        throw new Error('No token provided.')
     }
 
     return jwt.verify(token, process.env.JWT_SECRET)
@@ -66,8 +70,8 @@ function logout(res) {
 }
 
 module.exports = {
-    signup,
     login,
     check,
+    signup,
     logout
 }

@@ -26,12 +26,6 @@ const NavBar = () =>  {
                         <Button onClick={logout} variant="outlined" color="secondary" sx={{ mr: 1 }}>
                             Logout
                         </Button>
-
-                        <Link href={'dashboard'} passHref>
-                            <Button variant="contained" color="primary">
-                                DashBoard
-                            </Button>
-                        </Link>
                     </>
                 ) : (
                     <>

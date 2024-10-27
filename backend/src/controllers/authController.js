@@ -19,7 +19,6 @@ exports.signup = async (req, res) => {
         return res.status(201).json({ user: user })
     }
     catch (error) {
-        console.error(error)
         return res.status(500).json({ error: 'Error creating user' })
     }
 }
@@ -42,8 +41,7 @@ exports.login = async (req, res) => {
         return res.json({user: user})
     }
     catch (error) {
-        console.error(error)
-        return res.status(500).json({errors: [{msg: 'Email or password incorrect!'}] })
+        return res.status(500).json({errors: [{msg: error.message}] })
     }
 }
 
@@ -57,13 +55,11 @@ exports.login = async (req, res) => {
  */
 exports.check = async (req, res) => {
     try {
-        const user = authService.check( req.cookies.token)
-
+        const user = authService.check(req.cookies.token)
         return res.json({ user: user })
     }
     catch (error) {
-        console.error(error)
-        return res.status(500).json({ message: 'Invalid token' })
+        return res.status(500).json({ message: 'Invalid token.' })
     }
 }
 

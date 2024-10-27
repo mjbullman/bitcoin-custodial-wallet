@@ -18,10 +18,12 @@ app.use(cookieParser())
 // import routes.
 const authRoutes = require('./src/routes/authRoutes')
 const plaidRoutes = require('./src/routes/plaidRoutes')
+const bitcoinRoutes = require('./src/routes/bitcoinRoutes')
 
 // use routes
 app.use('/api/auth', authRoutes)
 app.use('/api/plaid', plaidRoutes)
+app.use('/api/bitcoin/', bitcoinRoutes)
 
 // start server listening on port.
 app.listen(PORT, () =>{
