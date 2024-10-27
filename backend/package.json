@@ -1,0 +1,38 @@
+{
+  "name": "exodus-backend",
+  "version": "1.0.0",
+  "description": "Backend server for the Exodus application.",
+  "author": "Martin Bullman",
+  "license": "ISC",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server",
+    "test": "mocha",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "plaid": "^25.0.0",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
+    "sqlite3": "^5.1.7",
+    "eslint": "^8"
+  },
+  "devDependencies": {
+    "chai": "^4",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "install": "^0.13.0",
+    "mocha": "^10.6.0",
+    "nodemon": "^3.1.4",
+    "sinon": "^18.0.0"
+  }
+}
