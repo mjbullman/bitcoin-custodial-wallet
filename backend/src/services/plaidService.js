@@ -29,7 +29,7 @@ const client = new PlaidApi(configuration)
 const createLinkToken = async (userId) => {
     const token = await client.linkTokenCreate({
         user: { client_user_id: userId.toString() },
-        client_name: 'Exodus Custodial Wallet',
+        client_name: 'Bitcoin Custodial Wallet',
         language: 'en',
         products: ['auth'],
         country_codes: ['US'],

@@ -16,7 +16,7 @@ const Home = () => {
                 p: 3, textAlign: 'center', typography: { xs: 'h5', sm: 'h4', md: 'h3' }
             }}>
 
-                Exodus Custodial Wallet
+                Bitcoin Custodial Wallet
 
             </Typography>
 
