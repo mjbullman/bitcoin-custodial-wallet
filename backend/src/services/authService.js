@@ -16,7 +16,15 @@ const { generateBitcoinAddress } = require('./bitcoinService')
  */
 async function signup(userDetails) {
     const { name, email, password } = userDetails
-    const btc_wallet_address = await generateBitcoinAddress()
+    let btc_wallet_address = ''
+
+    try {
+        [btc_wallet_address] = await Promise.all([generateBitcoinAddress()]);
+    }
+    catch (error) {
+        console.error(error)
+    }
+
     const user = await User.create({ name, email, password, btc_wallet_address })
     const token = generateToken(user)
 
