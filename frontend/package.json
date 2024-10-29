@@ -1,6 +1,7 @@
 {
-  "name": "exodus-frontend",
+  "name": "bitcoin-wallet-frontend",
   "version": "1.0.0",
+  "description": "Frontend for the Bitcoin custodial wallet.",
   "author": "Martin Bullman",
   "license": "ISC",
   "private": true,
@@ -21,7 +22,7 @@
     "dotenv": "^16.4.5",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
-    "next": "14.2.4",
+    "next": "^14.2.16",
     "plaid": "^25.0.0",
     "react": "^18",
     "react-dom": "^18",

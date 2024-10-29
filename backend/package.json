@@ -1,7 +1,7 @@
 {
-  "name": "exodus-backend",
+  "name": "bitcoin-wallet-backend",
   "version": "1.0.0",
-  "description": "Backend server for the Exodus application.",
+  "description": "Backend server for the Bitcoin custodial wallet.",
   "author": "Martin Bullman",
   "license": "ISC",
   "private": true,
